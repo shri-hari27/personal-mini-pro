@@ -28,10 +28,12 @@ const navLinkStyles = {
   textDecoration: "none",
   typography: "h6",
   "&:hover": {
-    color: "grey.500",
+    color: "#ff5722",
+    fontWeight: "bold",
   },
   "&.active": {
-    color: "text.secondary",
+    color: "#ff9800",
+    fontWeight: "bold",
   },
 };
 interface Props {
@@ -51,6 +53,7 @@ export default function Header({ handleThemeChange, darkMode }: Props) {
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
+          backgroundColor: "black",
         }}
       >
         <Box display="flex" alignItems="center">
@@ -60,7 +63,7 @@ export default function Header({ handleThemeChange, darkMode }: Props) {
             to="/"
             sx={navLinkStyles}
           >
-            RE-STORE
+            E-comm
           </Typography>
           <Switch checked={darkMode} onChange={handleThemeChange} />
         </Box>
@@ -75,6 +78,11 @@ export default function Header({ handleThemeChange, darkMode }: Props) {
               {title.toUpperCase()}
             </ListItem>
           ))}
+          {user && user.roles?.includes("Admin") && (
+            <ListItem component={NavLink} to={"/inventory"} sx={navLinkStyles}>
+              INVENTORY
+            </ListItem>
+          )}
         </List>
         <Box display="flex" alignItems="center">
           <IconButton

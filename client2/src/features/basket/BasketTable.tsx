@@ -12,6 +12,8 @@ import {
 } from "@mui/material";
 import { removeBasketItemAsync, addBasketItemAsync } from "./basketSlice";
 import { useAppDispatch, useAppSelector } from "../../app/store/configureStore";
+import { BasketItem } from "../../app/models/basket";
+
 interface Props {
   items: BasketItem[];
   isBasket?: boolean;
@@ -35,7 +37,7 @@ export default function BasketTable({ items, isBasket = true }: Props) {
         <TableBody>
           {items.map((item) => (
             <TableRow
-              key={item.id}
+              key={item.Id}
               sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
             >
               <TableCell component="th" scope="row">
@@ -55,11 +57,11 @@ export default function BasketTable({ items, isBasket = true }: Props) {
                 {isBasket && (
                   <LoadingButton
                     color="error"
-                    loading={status === "pendingRemoveItem" + item.id + "rem"}
+                    loading={status === "pendingRemoveItem" + item.Id + "rem"}
                     onClick={() =>
                       dispatch(
                         removeBasketItemAsync({
-                          productId: item.id,
+                          productId: item.Id,
                           quantity: 1,
                           name: "rem",
                         })
@@ -72,9 +74,9 @@ export default function BasketTable({ items, isBasket = true }: Props) {
                 {item.quantity}
                 {isBasket && (
                   <LoadingButton
-                    loading={status === "pendingAddItem" + item.id}
+                    loading={status === "pendingAddItem" + item.Id}
                     onClick={() =>
-                      dispatch(addBasketItemAsync({ productId: item.id }))
+                      dispatch(addBasketItemAsync({ productId: item.Id }))
                     }
                     color="secondary"
                   >
@@ -88,11 +90,11 @@ export default function BasketTable({ items, isBasket = true }: Props) {
               {isBasket && (
                 <TableCell align="right">
                   <LoadingButton
-                    loading={status === "pendingRemoveItem" + item.id + "del"}
+                    loading={status === "pendingRemoveItem" + item.Id + "del"}
                     onClick={() =>
                       dispatch(
                         removeBasketItemAsync({
-                          productId: item.id,
+                          productId: item.Id,
                           quantity: item.quantity,
                           name: "del",
                         })

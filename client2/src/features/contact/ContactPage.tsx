@@ -46,29 +46,27 @@ export default function ContactPage() {
       // contact page from here
       </ButtonGroup> */}
       <Container>
-        <Typography variant="h3" gutterBottom>
+        <Typography variant="h2" gutterBottom>
           Contact Us
         </Typography>
         <Grid container spacing={3}>
           <Grid item xs={12} sm={6}>
-            <Paper style={{ padding: "20px", background: "#f0f0f0" }}>
+            <Paper style={{ padding: "20px" }}>
               <Typography variant="h4" gutterBottom>
                 Contact Information
               </Typography>
               <Typography variant="body1">
-                #222 7th main 10th cross ,Becker's Street ,Electronic City
+                #777 10th main 5th cross Becker's Street ,Electronic City
               </Typography>
               <Typography variant="body1">
-                Banglore,Karnataka,India-560029
+                Banglore ,Karnataka 560022
               </Typography>
-              <Typography variant="body1">
-                Email: info.ecomm@gmail.com
-              </Typography>
-              <Typography variant="body1">Phone: 123-456-7890</Typography>
+              <Typography variant="body1">Email: Ecomm@info.com</Typography>
+              <Typography variant="body1">Phone: 777333111</Typography>
             </Paper>
           </Grid>
           <Grid item xs={12} sm={6}>
-            <Paper style={{ padding: "20px", background: "#f9f9f9" }}>
+            <Paper style={{ padding: "20px" }}>
               <Typography variant="h4" gutterBottom>
                 Send Us a Message
               </Typography>

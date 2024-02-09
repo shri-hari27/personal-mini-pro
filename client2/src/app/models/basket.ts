@@ -1,5 +1,5 @@
 export interface BasketItem {
-  productId: number;
+  Id: number;
   name: string;
   price: number;
   pictureUrl: string;
@@ -14,26 +14,26 @@ export interface Basket {
   items: BasketItem[];
 }
 
-// export interface Product {
-//   id: number;
-//   name: string;
-//   price: number;
-//   pictureUrl: string;
-//   brand: string;
-//   type: string;
-//   quantity: number;
-// }
+export interface Product {
+  id: number;
+  name: string;
+  price: number;
+  pictureUrl: string;
+  brand: string;
+  type: string;
+  quantityInStock: number;
+}
 
-// export interface Basket {
-//   id: number;
-//   buyerId: string;
-//   items: Product[];
-// }
-// export interface ProductParams {
-//   orderBy: string;
-//   searchTerm?: string;
-//   types: string[];
-//   brands: string[];
-//   pageNumber: number;
-//   pageSize: number;
-// }
+export interface Basket {
+  id: number;
+  buyerId: string;
+  items: Product[];
+}
+export interface ProductParams {
+  orderBy: string;
+  searchTerm?: string;
+  types: string[];
+  brands: string[];
+  pageNumber: number;
+  pageSize: number;
+}

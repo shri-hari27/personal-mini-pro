@@ -7,7 +7,6 @@ import agent from "../../app/api/agent";
 import { Product, ProductParams } from "../../app/models/basket";
 import { RootState } from "../../app/store/configureStore";
 import { MetaData } from "../../app/models/pagination";
-
 interface CatalogState {
   productsLoaded: boolean;
   filtersLoaded: boolean;
@@ -17,9 +16,7 @@ interface CatalogState {
   productParams: ProductParams;
   metaData: MetaData | null;
 }
-
 const productsAdapter = createEntityAdapter<Product>();
-
 function getAxiosParams(productParams: ProductParams) {
   const params = new URLSearchParams();
   params.append("pageNumber", productParams.pageNumber.toString());
@@ -33,7 +30,6 @@ function getAxiosParams(productParams: ProductParams) {
     params.append("brands", productParams.brands.toString());
   return params;
 }
-
 export const fetchProductsAsync = createAsyncThunk<
   Product[],
   void,
@@ -59,7 +55,6 @@ export const fetchProductAsync = createAsyncThunk<Product, number>(
     }
   }
 );
-
 export const fetchFilters = createAsyncThunk(
   "catalog/fetchFilters",
   async (_, thunkAPI) => {
@@ -70,7 +65,6 @@ export const fetchFilters = createAsyncThunk(
     }
   }
 );
-
 function initParams(): ProductParams {
   return {
     pageNumber: 1,
@@ -80,13 +74,10 @@ function initParams(): ProductParams {
     types: [],
   };
 }
-
 export const catalogSlice = createSlice({
   name: "catalog",
-
   initialState: productsAdapter.getInitialState<CatalogState>({
     productsLoaded: false,
-
     filtersLoaded: false,
     status: "idle",
     brands: [],
@@ -94,7 +85,6 @@ export const catalogSlice = createSlice({
     productParams: initParams(),
     metaData: null,
   }),
-
   reducers: {
     setProductParams: (state, action) => {
       state.productsLoaded = false;
@@ -113,6 +103,14 @@ export const catalogSlice = createSlice({
     },
     resetProductParams: (state) => {
       state.productParams = initParams();
+    },
+    setProduct: (state, action) => {
+      productsAdapter.upsertOne(state, action.payload);
+      state.productsLoaded = false;
+    },
+    removeProduct: (state, action) => {
+      productsAdapter.removeOne(state, action.payload);
+      state.productsLoaded = false;
     },
   },
   extraReducers: (builder) => {
@@ -158,6 +156,8 @@ export const {
   resetProductParams,
   setMetaData,
   setPageNumber,
+  setProduct,
+  removeProduct,
 } = catalogSlice.actions;
 
 export const productSelectors = productsAdapter.getSelectors(
