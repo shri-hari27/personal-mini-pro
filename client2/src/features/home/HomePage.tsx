@@ -8,7 +8,7 @@ export default function HomePage() {
       <Typography variant="h2" align="center" gutterBottom>
         Welcome to E-Comm
       </Typography>
-      <Typography variant="body1" align="center" paragraph>
+      <Typography variant="h4" align="center" paragraph>
         Explore our wide range of products and find exactly what you need.
       </Typography>
       <Grid container spacing={3} justifyContent="center" marginBottom="20px">

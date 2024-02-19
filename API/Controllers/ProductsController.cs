@@ -20,7 +20,7 @@ public class ProductsController : BaseApiController
     {
             _imageService = imageService;
             _mapper = mapper;
-        _context = context;
+            _context = context;
     }
 
     [HttpGet]

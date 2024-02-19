@@ -37,7 +37,7 @@ export default function BasketTable({ items, isBasket = true }: Props) {
         <TableBody>
           {items.map((item) => (
             <TableRow
-              key={item.Id}
+              key={item.productId}
               sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
             >
               <TableCell component="th" scope="row">
@@ -57,11 +57,13 @@ export default function BasketTable({ items, isBasket = true }: Props) {
                 {isBasket && (
                   <LoadingButton
                     color="error"
-                    loading={status === "pendingRemoveItem" + item.Id + "rem"}
+                    loading={
+                      status === "pendingRemoveItem" + item.productId + "rem"
+                    }
                     onClick={() =>
                       dispatch(
                         removeBasketItemAsync({
-                          productId: item.Id,
+                          productId: item.productId,
                           quantity: 1,
                           name: "rem",
                         })
@@ -74,9 +76,11 @@ export default function BasketTable({ items, isBasket = true }: Props) {
                 {item.quantity}
                 {isBasket && (
                   <LoadingButton
-                    loading={status === "pendingAddItem" + item.Id}
+                    loading={status === "pendingAddItem" + item.productId}
                     onClick={() =>
-                      dispatch(addBasketItemAsync({ productId: item.Id }))
+                      dispatch(
+                        addBasketItemAsync({ productId: item.productId })
+                      )
                     }
                     color="secondary"
                   >
@@ -90,11 +94,13 @@ export default function BasketTable({ items, isBasket = true }: Props) {
               {isBasket && (
                 <TableCell align="right">
                   <LoadingButton
-                    loading={status === "pendingRemoveItem" + item.Id + "del"}
+                    loading={
+                      status === "pendingRemoveItem" + item.productId + "del"
+                    }
                     onClick={() =>
                       dispatch(
                         removeBasketItemAsync({
-                          productId: item.Id,
+                          productId: item.productId,
                           quantity: item.quantity,
                           name: "del",
                         })
